@@ -1,5 +1,6 @@
 package cl.threeit.surveyapi.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class SurveyMusicFavServiceImpl implements SurveyMusicFavService {
 
 	@Override
 	public Boolean create(SurveyMusicFav entity) {
+		entity.setFechaCreacion(LocalDateTime.now());
+		System.out.println(entity.toString());
 		dao.save(entity);
 		return true;
 	}

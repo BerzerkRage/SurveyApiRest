@@ -10,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "TA_SURVEYMUSICFAV")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SurveyMusicFav implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,9 +22,10 @@ public class SurveyMusicFav implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "fecha_creacion")
+	@Column(name = "FECHA_CREACION")
 	private LocalDateTime fechaCreacion;
 	private String email;
+	@Column(name = "ID_MUSICSTYLE")
 	private Integer idMusicStyle;
 
 	public Integer getId() {
@@ -54,6 +58,12 @@ public class SurveyMusicFav implements Serializable {
 
 	public void setIdMusicStyle(Integer idMusicStyle) {
 		this.idMusicStyle = idMusicStyle;
+	}
+
+	@Override
+	public String toString() {
+		return "SurveyMusicFav [id=" + id + ", fechaCreacion=" + fechaCreacion + ", email=" + email + ", idMusicStyle="
+				+ idMusicStyle + "]";
 	}
 
 }
