@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -23,6 +24,7 @@ public class SurveyMusicFav implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(name = "FECHA_CREACION")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime fechaCreacion;
 	private String email;
 	@Column(name = "ID_MUSICSTYLE")

@@ -1,6 +1,8 @@
 package cl.threeit.surveyapi.services.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +19,7 @@ public class MusicStyleImpl implements MusicStyleService {
 
 	@Override
 	public List<MusicStyle> get() {
-		return (List<MusicStyle>) musicStyle.findAll();
-		
-		
+		return StreamSupport.stream(musicStyle.findAll().spliterator(), false).filter(m->m.getActivado().equals(true)).collect(Collectors.toList());
 	}
 
 }

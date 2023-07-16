@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cl.threeit.surveyapi.models.SurveyChart;
 import cl.threeit.surveyapi.models.entities.SurveyMusicFav;
 import cl.threeit.surveyapi.services.SurveyMusicFavService;
 
@@ -27,6 +28,20 @@ public class SurveyMusicFavRestController {
 		
 		try {
 			response = new ResponseEntity<List<SurveyMusicFav>>(service.get(),HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return response;
+	}
+	
+	@GetMapping(path = "/chart")
+	public ResponseEntity<List<SurveyChart>> getChart() {
+		ResponseEntity<List<SurveyChart>> response = null;
+		
+		try {
+			response = new ResponseEntity<List<SurveyChart>>(service.getChart(),HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
