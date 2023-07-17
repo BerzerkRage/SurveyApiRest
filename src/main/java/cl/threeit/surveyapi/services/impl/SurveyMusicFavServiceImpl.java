@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cl.threeit.surveyapi.models.SurveyChart;
 import cl.threeit.surveyapi.models.dao.ISurveyMusicFav;
@@ -27,6 +28,7 @@ public class SurveyMusicFavServiceImpl implements SurveyMusicFavService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Boolean create(SurveyMusicFav entity) {
 		entity.setFechaCreacion(LocalDateTime.now());
 		entity.setEmail(entity.getEmail().toLowerCase());

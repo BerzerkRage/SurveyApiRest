@@ -23,7 +23,7 @@ public class SurveyMusicFavRestController {
 	private SurveyMusicFavService service;
 	
 	@GetMapping(path = "/get")
-	public ResponseEntity<List<SurveyMusicFav>> getMusicStyle() {
+	public ResponseEntity<List<SurveyMusicFav>> getSurveis() {
 		ResponseEntity<List<SurveyMusicFav>> response = null;
 		
 		try {
@@ -51,7 +51,7 @@ public class SurveyMusicFavRestController {
 	}
 	
 	@PostMapping(path = "/")
-	public ResponseEntity<Boolean> getMusicStyle(
+	public ResponseEntity<Boolean> registerSurvey(
 			@RequestBody SurveyMusicFav entity
 		) {
 		ResponseEntity<Boolean> response = null;

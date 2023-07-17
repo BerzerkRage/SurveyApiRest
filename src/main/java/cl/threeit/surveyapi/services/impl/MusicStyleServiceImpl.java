@@ -12,7 +12,7 @@ import cl.threeit.surveyapi.models.entities.MusicStyle;
 import cl.threeit.surveyapi.services.MusicStyleService;
 
 @Service
-public class MusicStyleImpl implements MusicStyleService {
+public class MusicStyleServiceImpl implements MusicStyleService {
 	
 	@Autowired
 	private IMusicStyle musicStyle;

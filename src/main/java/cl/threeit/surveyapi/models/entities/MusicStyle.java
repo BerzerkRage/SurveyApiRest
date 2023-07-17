@@ -20,6 +20,17 @@ public class MusicStyle implements Serializable {
 	private String nombre;
 	private Boolean activado;
 	
+	public MusicStyle(Integer id, String nombre, Boolean activado) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.activado = activado;
+	}
+	
+	public MusicStyle() {
+		super();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -35,5 +46,14 @@ public class MusicStyle implements Serializable {
 	public Boolean getActivado() {
 		return activado;
 	}
+	public void setActivado(Boolean activado) {
+		this.activado = activado;
+	}
 
+	@Override
+	public String toString() {
+		return "MusicStyle [id=" + id + ", nombre=" + nombre + ", activado=" + activado + "]";
+	}
+	
+	
 }
