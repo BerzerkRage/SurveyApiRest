@@ -50,48 +50,9 @@ public class SurveyMusicFavTest {
 	
 	@Test
 	void validChartData() throws Exception {
-		List<SurveyChart> stadistics = this.surveyChartDao.getChartData();
-		System.out.println(Arrays.asList(stadistics).toString());
-	    assertThat(stadistics).hasSize(6);
+		List<SurveyChart> statistics = this.surveyChartDao.getChartData();
+		System.out.println(Arrays.asList(statistics).toString());
+	    assertThat(statistics).hasSize(6);
 	}
 	
-	/*
-	@Mock
-	private ISurveyMusicFav iSurveyMusicFav;
-	
-	@Mock
-	private SurveyMusicFavService surveyMusicFavService;
-	
-	
-	@Before(value = "")
-	public void init() {
-		MockitoAnnotations.openMocks(this);
-	}
-	
-	@Test
-	public void registerSurvey() {
-		SurveyMusicFav entity = new SurveyMusicFav();
-		entity.setId(100);
-		entity.setFechaCreacion(LocalDateTime.now());
-		entity.setEmail("est.vergaraaedo@gmail.com");
-		entity.setIdMusicStyle(1);
-		
-		surveyMusicFavService.create(entity);
-		
-		Mockito.verify(iSurveyMusicFav, Mockito.times(1)).save(entity);
-		
-		List<SurveyMusicFav> list = surveyMusicFavService.get();
-		System.out.println(Arrays.asList(list).toString());
-	}
-	
-	@Test 
-	public void getChart() {
-		try {
-			List<SurveyChart> list = surveyMusicFavService.getChart();
-			System.out.println(Arrays.asList(list).toString());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	*/
 }

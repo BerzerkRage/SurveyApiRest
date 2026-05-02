@@ -43,7 +43,7 @@ La API usa una base H2 en memoria configurada con:
 
 ```properties
 spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=PostgreSQL
-spring.datasource.name=sa
+spring.datasource.username=sa
 spring.datasource.password=
 ```
 

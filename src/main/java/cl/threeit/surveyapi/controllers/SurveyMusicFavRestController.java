@@ -2,6 +2,8 @@ package cl.threeit.surveyapi.controllers;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,51 +20,44 @@ import cl.threeit.surveyapi.services.SurveyMusicFavService;
 @RestController
 @RequestMapping(path = "api/survey-music")
 public class SurveyMusicFavRestController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(SurveyMusicFavRestController.class);
 	
 	@Autowired
 	private SurveyMusicFavService service;
 	
 	@GetMapping(path = "/get")
-	public ResponseEntity<List<SurveyMusicFav>> getSurveis() {
-		ResponseEntity<List<SurveyMusicFav>> response = null;
-		
+	public ResponseEntity<List<SurveyMusicFav>> getSurveys() {
 		try {
-			response = new ResponseEntity<List<SurveyMusicFav>>(service.get(),HttpStatus.OK);
+			return new ResponseEntity<List<SurveyMusicFav>>(service.get(), HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			LOGGER.error("Error obteniendo encuestas musicales", e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return response;
 	}
 	
 	@GetMapping(path = "/chart")
 	public ResponseEntity<List<SurveyChart>> getChart() {
-		ResponseEntity<List<SurveyChart>> response = null;
-		
 		try {
-			response = new ResponseEntity<List<SurveyChart>>(service.getChart(),HttpStatus.OK);
+			return new ResponseEntity<List<SurveyChart>>(service.getChart(), HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			LOGGER.error("Error obteniendo datos del grafico de encuestas", e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return response;
 	}
 	
 	@PostMapping(path = "/")
 	public ResponseEntity<Boolean> registerSurvey(
 			@RequestBody SurveyMusicFav entity
 		) {
-		ResponseEntity<Boolean> response = null;
-		
 		try {
-			response = new ResponseEntity<Boolean>(service.create(entity),HttpStatus.OK);
+			return new ResponseEntity<Boolean>(service.create(entity), HttpStatus.OK);
+		} catch (IllegalArgumentException e) {
+			LOGGER.warn("Solicitud invalida para registrar encuesta: {}", e.getMessage());
+			return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
-			e.printStackTrace();
-			response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			LOGGER.error("Error registrando encuesta musical", e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		return response;
 	}
 }
